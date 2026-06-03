@@ -1,0 +1,33 @@
+{
+  "snapshots": [
+    {
+      "date": "2026-06-03",
+      "nav": 100000.00,
+      "cash": 7467.70,
+      "cash_free": 1767.70,
+      "cash_csp_collateral": 5700.00,
+      "yield_engine_value": 40200.00,
+      "long_equity_value": 14022.00,
+      "asymmetric_long_value": 21208.30,
+      "hedge_value": 500.00,
+      "dry_powder_value": 11600.00,
+      "unrealized_pnl": 0.00,
+      "realized_pnl": 0.00,
+      "total_return_pct": 0.00,
+      "spy_price": null,
+      "qqq_price": null,
+      "btc_price": null,
+      "vix": 16.05,
+      "notes": "Initial deployment. All positions opened at close pricing. Awaiting next-day market data for benchmarks."
+    }
+  ],
+  "summary": {
+    "high_water_mark": 100000.00,
+    "max_drawdown_pct": 0.00,
+    "current_drawdown_pct": 0.00,
+    "best_day_pct": 0.00,
+    "worst_day_pct": 0.00,
+    "days_since_inception": 0,
+    "last_updated": "2026-06-03T20:00:00Z"
+  }
+}

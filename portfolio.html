@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Portfolio Experiment | Track Record</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 28px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.5px; }
+  h2 { font-size: 18px; font-weight: 500; margin: 24px 0 12px; color: #c9d1d9; }
+  .subtitle { color: #8b949e; font-size: 14px; margin-bottom: 24px; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 8px;
+  }
+  .badge.experiment { background: #2188ff; color: white; }
+  .badge.edu { background: #6f42c1; color: white; }
+
+  /* KPI Cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .kpi-label {
+    font-size: 12px;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .kpi-value {
+    font-size: 24px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .kpi-sub { font-size: 12px; color: #8b949e; margin-top: 4px; }
+  .pos { color: #3fb950; }
+  .neg { color: #f85149; }
+  .neutral { color: #8b949e; }
+
+  /* Charts */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 900px) {
+    .charts-grid { grid-template-columns: 1fr; }
+  }
+  .chart-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .chart-card h3 {
+    font-size: 14px;
+    color: #c9d1d9;
+    margin-bottom: 12px;
+  }
+  .chart-container { position: relative; height: 280px; }
+
+  /* Tables */
+  .table-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #1c2128;
+    color: #8b949e;
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #30363d;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  th:hover { background: #21262d; }
+  th.right { text-align: right; }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #21262d;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  td.right { text-align: right; }
+  td.ticker { font-weight: 600; color: #58a6ff; }
+  tr:hover { background: #1c2128; }
+  .tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .tag.yield_engine { background: #1f6feb33; color: #58a6ff; }
+  .tag.asymmetric_long { background: #db61a233; color: #db61a2; }
+  .tag.long_equity { background: #3fb95033; color: #3fb950; }
+  .tag.hedge { background: #f8514933; color: #f85149; }
+  .tag.dry_powder { background: #8b949e33; color: #c9d1d9; }
+  .tag.option { background: #f0883e33; color: #f0883e; }
+  .tag.stock { background: #3fb95033; color: #3fb950; }
+  .tag.etf { background: #58a6ff33; color: #58a6ff; }
+  .tag.preferred { background: #d29922AA; color: #ffd33d; }
+  .tag.cef { background: #a371f733; color: #a371f7; }
+  .tag.treasury { background: #6e768166; color: #c9d1d9; }
+  .tag.option_spread { background: #f0883eAA; color: #ffa657; }
+
+  .footer {
+    text-align: center;
+    color: #8b949e;
+    font-size: 12px;
+    padding: 24px;
+    border-top: 1px solid #21262d;
+    margin-top: 32px;
+  }
+  .footer a { color: #58a6ff; text-decoration: none; }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .control-btn {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.15s;
+  }
+  .control-btn:hover { background: #30363d; }
+  .control-btn.active { background: #1f6feb; border-color: #1f6feb; color: white; }
+
+  .summary-box {
+    background: #161b22;
+    border-left: 3px solid #1f6feb;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: #c9d1d9;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AI Portfolio Eksperimentas
+    <span class="badge experiment">EXPERIMENT</span>
+    <span class="badge edu">EDUKACIJA</span>
+  </h1>
+  <div class="subtitle">
+    AI vs Radoslav portfelis - 100K USD hipotetinis kapitalas - Pradžia <strong>2026-06-03</strong>
+  </div>
+</header>
+
+<div class="summary-box">
+  <strong>Pradinė tezė:</strong> Rinka @ ATH ir VIX 16, todėl baseline yra premium-harvest mode (40% yield engine),
+  bet yra trys konkrečios asimetriškos galimybės (BMNR 12% discount ETH NAV, SOFI PEG 0.58, GME SOTP 41% discount),
+  kurios verta agresyvesnio kapitalo įsipareigojimo nei tipinis institucinis allocator pasirinktų.
+</div>
+
+<!-- KPI Cards -->
+<div class="kpi-grid" id="kpi-grid"></div>
+
+<!-- Charts -->
+<div class="charts-grid">
+  <div class="chart-card">
+    <h3>NAV laikui bėgant (vs SPY/QQQ)</h3>
+    <div class="chart-container"><canvas id="navChart"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <h3>Alokacija pagal sluoksnį</h3>
+    <div class="chart-container"><canvas id="allocChart"></canvas></div>
+  </div>
+</div>
+
+<!-- Positions Table -->
+<div class="table-card">
+  <h2>Atviros pozicijos</h2>
+  <div class="controls">
+    <button class="control-btn active" data-filter="all">Visos</button>
+    <button class="control-btn" data-filter="yield_engine">Yield engine</button>
+    <button class="control-btn" data-filter="asymmetric_long">Asymmetric</button>
+    <button class="control-btn" data-filter="long_equity">Long equity</button>
+    <button class="control-btn" data-filter="hedge">Hedge</button>
+    <button class="control-btn" data-filter="dry_powder">Dry powder</button>
+  </div>
+  <table id="positions-table">
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Tipas</th>
+        <th>Detalė</th>
+        <th>Sluoksnis</th>
+        <th class="right">Qty</th>
+        <th class="right">Entry $</th>
+        <th class="right">Current $</th>
+        <th class="right">Cost basis</th>
+        <th class="right">Vertė</th>
+        <th class="right">P&L $</th>
+        <th class="right">P&L %</th>
+        <th class="right">% portfelio</th>
+      </tr>
+    </thead>
+    <tbody id="positions-tbody"></tbody>
+  </table>
+</div>
+
+<!-- Trade Log Table -->
+<div class="table-card">
+  <h2>Trade log</h2>
+  <table id="trades-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Laikas (UTC)</th>
+        <th>Action</th>
+        <th>Ticker</th>
+        <th>Detalė</th>
+        <th class="right">Qty</th>
+        <th class="right">Kaina</th>
+        <th class="right">Vertė</th>
+        <th>Tag</th>
+        <th>Priežastis</th>
+      </tr>
+    </thead>
+    <tbody id="trades-tbody"></tbody>
+  </table>
+</div>
+
+<!-- Daily snapshots -->
+<div class="table-card">
+  <h2>Dienos snapshot'ai</h2>
+  <table id="snapshots-table">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th class="right">NAV</th>
+        <th class="right">Return $</th>
+        <th class="right">Return %</th>
+        <th class="right">Drawdown %</th>
+        <th class="right">Cash %</th>
+        <th class="right">VIX</th>
+        <th>Pastabos</th>
+      </tr>
+    </thead>
+    <tbody id="snapshots-tbody"></tbody>
+  </table>
+</div>
+
+<div class="footer">
+  Eksperimento taisyklės: <a href="RULES.md">RULES.md</a> -
+  Tezės: <a href="THESIS.md">THESIS.md</a> -
+  Pradžia: 2026-06-03 -
+  Atnaujinta: <span id="last-updated"></span>
+</div>
+
+<script>
+// ============================================================================
+// EMBEDDED DATA - sync with positions.json, trades.json, daily-values.json
+// ============================================================================
+const POSITIONS = {
+  "as_of": "2026-06-03T20:00:00Z",
+  "starting_capital": 100000.00,
+  "cash_balance": 7467.70,
+  "cash_breakdown": {
+    "free": 1767.70,
+    "csp_collateral": 5700.00
+  },
+  "positions": [
+    {ticker:"STRC", asset_class:"preferred", layer:"yield_engine", quantity:80, entry_price:100.00, current_price:100.00, cost_basis:8000, current_value:8000, detail:"11.5% pref"},
+    {ticker:"PDI", asset_class:"cef", layer:"yield_engine", quantity:250, entry_price:20.00, current_price:20.00, cost_basis:5000, current_value:5000, detail:"~10% yield CEF"},
+    {ticker:"GME", asset_class:"option", layer:"yield_engine", quantity:-3, entry_price:0.95, current_price:0.95, cost_basis:-285, current_value:-285, detail:"Short put $19 Jul'26", collateral:5700},
+    {ticker:"TBILL-3M", asset_class:"treasury", layer:"yield_engine", quantity:20000, entry_price:1.00, current_price:1.00, cost_basis:20000, current_value:20000, detail:"3M ladder @ 4.2%"},
+    {ticker:"BMNR", asset_class:"stock", layer:"asymmetric_long", quantity:390, entry_price:17.97, current_price:17.97, cost_basis:7008.30, current_value:7008.30, detail:"ETH treasury 12% disc"},
+    {ticker:"SOFI", asset_class:"stock", layer:"asymmetric_long", quantity:450, entry_price:17.74, current_price:17.74, cost_basis:7983, current_value:7983, detail:"PEG 0.58 growth"},
+    {ticker:"GME", asset_class:"stock", layer:"asymmetric_long", quantity:240, entry_price:20.85, current_price:20.85, cost_basis:5004, current_value:5004, detail:"SOTP 41% disc"},
+    {ticker:"LMT", asset_class:"stock", layer:"long_equity", quantity:10, entry_price:513.00, current_price:513.00, cost_basis:5130, current_value:5130, detail:"Defense contrarian"},
+    {ticker:"XOM", asset_class:"stock", layer:"long_equity", quantity:33, entry_price:149.00, current_price:149.00, cost_basis:4917, current_value:4917, detail:"Iran hedge"},
+    {ticker:"URA", asset_class:"etf", layer:"long_equity", quantity:75, entry_price:53.00, current_price:53.00, cost_basis:3975, current_value:3975, detail:"Uranium structural"},
+    {ticker:"LMT", asset_class:"option", layer:"asymmetric_long", quantity:1, entry_price:55.00, current_price:55.00, cost_basis:5500, current_value:5500, detail:"LEAPS $500C Jan'27"},
+    {ticker:"GEV", asset_class:"option_spread", layer:"asymmetric_long", quantity:2, entry_price:25.00, current_price:25.00, cost_basis:5000, current_value:5000, detail:"$1000/$1100 Sep'26 3:1 R/R"},
+    {ticker:"SOFI", asset_class:"option", layer:"asymmetric_long", quantity:4, entry_price:5.00, current_price:5.00, cost_basis:2000, current_value:2000, detail:"$20C Jan'27"},
+    {ticker:"BMNR", asset_class:"option", layer:"asymmetric_long", quantity:2, entry_price:6.00, current_price:6.00, cost_basis:1200, current_value:1200, detail:"$20C Sep'26"},
+    {ticker:"SPX", asset_class:"option", layer:"hedge", quantity:1, entry_price:5.00, current_price:5.00, cost_basis:500, current_value:500, detail:"$7000P Sep'26 tail"},
+    {ticker:"TBILL-DRY", asset_class:"treasury", layer:"dry_powder", quantity:11600, entry_price:1.00, current_price:1.00, cost_basis:11600, current_value:11600, detail:"Trigger reserve"}
+  ],
+  "allocation": {
+    "Yield engine": 40.20,
+    "Asymmetric long": 28.71,
+    "Long equity": 14.02,
+    "Hedge": 0.50,
+    "Dry powder": 11.60,
+    "Cash buffer": 1.50
+  }
+};
+
+const TRADES = [
+  {n:1, time:"2026-06-03 20:00", action:"BUY", ticker:"STRC", detail:"80 sh", qty:80, price:100, value:8000, tag:"INIT", rationale:"11.5% fix yield preferred"},
+  {n:2, time:"2026-06-03 20:00", action:"BUY", ticker:"PDI", detail:"250 sh", qty:250, price:20, value:5000, tag:"INIT", rationale:"CEF discount + 10% yield"},
+  {n:3, time:"2026-06-03 20:00", action:"SELL_PUT", ticker:"GME", detail:"3x $19P Jul'26", qty:-3, price:0.95, value:-285, tag:"INIT", rationale:"24% annualized yield, eff entry $18.05"},
+  {n:4, time:"2026-06-03 20:00", action:"BUY", ticker:"TBILL-3M", detail:"$20K ladder", qty:20000, price:1, value:20000, tag:"INIT", rationale:"Risk-free 4.2% APR"},
+  {n:5, time:"2026-06-03 20:00", action:"BUY", ticker:"BMNR", detail:"390 sh", qty:390, price:17.97, value:7008.30, tag:"INIT", rationale:"ETH 12% discount to NAV + Tom Lee narrative"},
+  {n:6, time:"2026-06-03 20:00", action:"BUY", ticker:"SOFI", detail:"450 sh", qty:450, price:17.74, value:7983, tag:"INIT", rationale:"PEG 0.58, +41% Q1 rev, 14.7M members"},
+  {n:7, time:"2026-06-03 20:00", action:"BUY", ticker:"GME", detail:"240 sh", qty:240, price:20.85, value:5004, tag:"INIT", rationale:"SOTP $35 vs $20.92 = 41% discount"},
+  {n:8, time:"2026-06-03 20:00", action:"BUY", ticker:"LMT", detail:"10 sh", qty:10, price:513, value:5130, tag:"INIT", rationale:"Defense contrarian, P/E 16, RSI 37 oversold"},
+  {n:9, time:"2026-06-03 20:00", action:"BUY", ticker:"XOM", detail:"33 sh", qty:33, price:149, value:4917, tag:"INIT", rationale:"Energy defensive, beta 0.15, Iran hedge"},
+  {n:10, time:"2026-06-03 20:00", action:"BUY", ticker:"URA", detail:"75 sh", qty:75, price:53, value:3975, tag:"INIT", rationale:"Uranium structural - AI power + SMR"},
+  {n:11, time:"2026-06-03 20:00", action:"BUY_CALL", ticker:"LMT", detail:"1x $500C Jan'27", qty:1, price:55, value:5500, tag:"INIT", rationale:"LEAPS 5x leverage on LMT thesis"},
+  {n:12, time:"2026-06-03 20:00", action:"BULL_SPREAD", ticker:"GEV", detail:"2x $1000/$1100 Sep'26", qty:2, price:25, value:5000, tag:"INIT", rationale:"3:1 R/R AI power picks-and-shovels"},
+  {n:13, time:"2026-06-03 20:00", action:"BUY_CALL", ticker:"SOFI", detail:"4x $20C Jan'27", qty:4, price:5, value:2000, tag:"INIT", rationale:"Convexity to growth re-rating"},
+  {n:14, time:"2026-06-03 20:00", action:"BUY_CALL", ticker:"BMNR", detail:"2x $20C Sep'26", qty:2, price:6, value:1200, tag:"INIT", rationale:"Convexity to ETH + NAV closure"},
+  {n:15, time:"2026-06-03 20:00", action:"BUY_PUT", ticker:"SPX", detail:"1x $7000P Sep'26", qty:1, price:5, value:500, tag:"INIT", rationale:"5% OTM tail hedge, Section 1256"},
+  {n:16, time:"2026-06-03 20:00", action:"BUY", ticker:"TBILL-DRY", detail:"Reserve", qty:11600, price:1, value:11600, tag:"INIT", rationale:"Dry powder for VIX > 25 trigger"}
+];
+
+const SNAPSHOTS = [
+  {date:"2026-06-03", nav:100000, return_dollar:0, return_pct:0, drawdown:0, cash_pct:32.6, vix:16.05, notes:"Initial deploy. Awaiting next-day market data."}
+];
+
+// Benchmark placeholders - will be populated as data comes in
+const BENCHMARKS = {
+  spy: {start: null, history: []},
+  qqq: {start: null, history: []},
+  btc: {start: null, history: []}
+};
+
+// ============================================================================
+// RENDER LOGIC
+// ============================================================================
+
+function formatMoney(n) {
+  if (n === null || n === undefined) return '-';
+  const sign = n < 0 ? '-' : '';
+  const abs = Math.abs(n);
+  return sign + '$' + abs.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+function formatPct(n) {
+  if (n === null || n === undefined) return '-';
+  const sign = n > 0 ? '+' : '';
+  return sign + n.toFixed(2) + '%';
+}
+function pnlClass(n) {
+  if (n > 0.001) return 'pos';
+  if (n < -0.001) return 'neg';
+  return 'neutral';
+}
+
+function calcMetrics() {
+  let totalValue = 0;
+  let totalCost = 0;
+  let optionsPremiumAtRisk = 0;
+  let cashEquivalent = POSITIONS.cash_balance;
+
+  POSITIONS.positions.forEach(p => {
+    totalValue += p.current_value;
+    totalCost += p.cost_basis;
+    if (p.asset_class === 'option' && p.quantity > 0) {
+      optionsPremiumAtRisk += p.cost_basis;
+    }
+    if (p.asset_class === 'option' && p.quantity < 0 && p.collateral) {
+      cashEquivalent += p.collateral;
+    }
+    if (p.asset_class === 'treasury') {
+      cashEquivalent += p.current_value;
+    }
+  });
+
+  const nav = totalValue + POSITIONS.cash_balance;
+  const totalReturn = nav - POSITIONS.starting_capital;
+  const totalReturnPct = (totalReturn / POSITIONS.starting_capital) * 100;
+  const cashPct = (cashEquivalent / nav) * 100;
+
+  // Find best/worst position (PnL %)
+  let bestPos = null, worstPos = null;
+  POSITIONS.positions.forEach(p => {
+    if (p.cost_basis === 0) return;
+    const pnlPct = ((p.current_value - p.cost_basis) / Math.abs(p.cost_basis)) * 100;
+    if (!bestPos || pnlPct > bestPos.pnlPct) bestPos = {ticker: p.ticker, pnlPct, detail: p.detail};
+    if (!worstPos || pnlPct < worstPos.pnlPct) worstPos = {ticker: p.ticker, pnlPct, detail: p.detail};
+  });
+
+  return {nav, totalReturn, totalReturnPct, cashPct, optionsPremiumAtRisk, bestPos, worstPos, totalValue, totalCost};
+}
+
+function renderKPIs() {
+  const m = calcMetrics();
+  const daysSinceInception = Math.floor((Date.now() - new Date('2026-06-03').getTime()) / (1000*60*60*24));
+  const grid = document.getElementById('kpi-grid');
+
+  grid.innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Portfelio NAV</div>
+      <div class="kpi-value">${formatMoney(m.nav)}</div>
+      <div class="kpi-sub">Pradžia $100,000</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Bendra grąža</div>
+      <div class="kpi-value ${pnlClass(m.totalReturn)}">${formatMoney(m.totalReturn)}</div>
+      <div class="kpi-sub ${pnlClass(m.totalReturn)}">${formatPct(m.totalReturnPct)}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Dienos nuo start</div>
+      <div class="kpi-value">${Math.max(0, daysSinceInception)}</div>
+      <div class="kpi-sub">Tikslas: 25% / metus</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cash + Treasury</div>
+      <div class="kpi-value">${m.cashPct.toFixed(1)}%</div>
+      <div class="kpi-sub">Trigger reserve aktyvus</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Opcionų premium @ risk</div>
+      <div class="kpi-value">${formatMoney(m.optionsPremiumAtRisk)}</div>
+      <div class="kpi-sub">${(m.optionsPremiumAtRisk/m.nav*100).toFixed(1)}% portfelio</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Best pozicija</div>
+      <div class="kpi-value ${pnlClass(m.bestPos ? m.bestPos.pnlPct : 0)}" style="font-size: 18px;">
+        ${m.bestPos ? m.bestPos.ticker : '-'}
+      </div>
+      <div class="kpi-sub ${pnlClass(m.bestPos ? m.bestPos.pnlPct : 0)}">${m.bestPos ? formatPct(m.bestPos.pnlPct) : '-'}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Worst pozicija</div>
+      <div class="kpi-value ${pnlClass(m.worstPos ? m.worstPos.pnlPct : 0)}" style="font-size: 18px;">
+        ${m.worstPos ? m.worstPos.ticker : '-'}
+      </div>
+      <div class="kpi-sub ${pnlClass(m.worstPos ? m.worstPos.pnlPct : 0)}">${m.worstPos ? formatPct(m.worstPos.pnlPct) : '-'}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">VIX (last)</div>
+      <div class="kpi-value">${SNAPSHOTS[SNAPSHOTS.length-1].vix.toFixed(2)}</div>
+      <div class="kpi-sub">Trigger > 25: deploy 20%</div>
+    </div>
+  `;
+}
+
+function renderPositions(filter = 'all') {
+  const tbody = document.getElementById('positions-tbody');
+  const m = calcMetrics();
+  let rows = POSITIONS.positions.filter(p => filter === 'all' || p.layer === filter);
+
+  tbody.innerHTML = rows.map(p => {
+    const pnl = p.current_value - p.cost_basis;
+    const pnlPct = p.cost_basis !== 0 ? (pnl / Math.abs(p.cost_basis)) * 100 : 0;
+    const portfolioPct = (Math.abs(p.current_value) / m.nav) * 100;
+    return `
+      <tr>
+        <td class="ticker">${p.ticker}</td>
+        <td><span class="tag ${p.asset_class}">${p.asset_class}</span></td>
+        <td>${p.detail || ''}</td>
+        <td><span class="tag ${p.layer}">${p.layer.replace('_', ' ')}</span></td>
+        <td class="right">${p.quantity}</td>
+        <td class="right">${formatMoney(p.entry_price)}</td>
+        <td class="right">${formatMoney(p.current_price)}</td>
+        <td class="right">${formatMoney(p.cost_basis)}</td>
+        <td class="right">${formatMoney(p.current_value)}</td>
+        <td class="right ${pnlClass(pnl)}">${formatMoney(pnl)}</td>
+        <td class="right ${pnlClass(pnl)}">${formatPct(pnlPct)}</td>
+        <td class="right">${portfolioPct.toFixed(2)}%</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function renderTrades() {
+  const tbody = document.getElementById('trades-tbody');
+  tbody.innerHTML = TRADES.slice().reverse().map(t => `
+    <tr>
+      <td>#${t.n}</td>
+      <td>${t.time}</td>
+      <td>${t.action}</td>
+      <td class="ticker">${t.ticker}</td>
+      <td>${t.detail}</td>
+      <td class="right">${t.qty}</td>
+      <td class="right">${formatMoney(t.price)}</td>
+      <td class="right">${formatMoney(t.value)}</td>
+      <td><span class="tag yield_engine">${t.tag}</span></td>
+      <td style="white-space: normal; max-width: 350px;">${t.rationale}</td>
+    </tr>
+  `).join('');
+}
+
+function renderSnapshots() {
+  const tbody = document.getElementById('snapshots-tbody');
+  tbody.innerHTML = SNAPSHOTS.slice().reverse().map(s => `
+    <tr>
+      <td>${s.date}</td>
+      <td class="right">${formatMoney(s.nav)}</td>
+      <td class="right ${pnlClass(s.return_dollar)}">${formatMoney(s.return_dollar)}</td>
+      <td class="right ${pnlClass(s.return_pct)}">${formatPct(s.return_pct)}</td>
+      <td class="right ${pnlClass(-s.drawdown)}">${formatPct(-s.drawdown)}</td>
+      <td class="right">${s.cash_pct.toFixed(1)}%</td>
+      <td class="right">${s.vix.toFixed(2)}</td>
+      <td style="white-space: normal; max-width: 400px;">${s.notes}</td>
+    </tr>
+  `).join('');
+}
+
+function renderNavChart() {
+  const ctx = document.getElementById('navChart').getContext('2d');
+  const labels = SNAPSHOTS.map(s => s.date);
+  const navData = SNAPSHOTS.map(s => s.nav);
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'AI Portfolio NAV',
+          data: navData,
+          borderColor: '#58a6ff',
+          backgroundColor: '#58a6ff22',
+          tension: 0.1,
+          fill: true,
+          pointRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#c9d1d9' } }
+      },
+      scales: {
+        x: { ticks: { color: '#8b949e' }, grid: { color: '#21262d' } },
+        y: {
+          ticks: {
+            color: '#8b949e',
+            callback: (v) => '$' + (v/1000).toFixed(0) + 'K'
+          },
+          grid: { color: '#21262d' }
+        }
+      }
+    }
+  });
+}
+
+function renderAllocChart() {
+  const ctx = document.getElementById('allocChart').getContext('2d');
+  const labels = Object.keys(POSITIONS.allocation);
+  const data = Object.values(POSITIONS.allocation);
+  const colors = ['#58a6ff', '#db61a2', '#3fb950', '#f85149', '#c9d1d9', '#a371f7'];
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: colors,
+        borderColor: '#0d1117',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: { color: '#c9d1d9', font: { size: 11 } }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${ctx.parsed.toFixed(2)}%`
+          }
+        }
+      }
+    }
+  });
+}
+
+// Filter buttons
+document.querySelectorAll('[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPositions(btn.dataset.filter);
+  });
+});
+
+// Table sorting
+function setupTableSorting(tableId) {
+  const table = document.getElementById(tableId);
+  table.querySelectorAll('th').forEach((th, idx) => {
+    let asc = true;
+    th.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        const aV = a.cells[idx]?.innerText.replace(/[\$,%+]/g, '').trim() || '';
+        const bV = b.cells[idx]?.innerText.replace(/[\$,%+]/g, '').trim() || '';
+        const aN = parseFloat(aV), bN = parseFloat(bV);
+        if (!isNaN(aN) && !isNaN(bN)) {
+          return asc ? aN - bN : bN - aN;
+        }
+        return asc ? aV.localeCompare(bV) : bV.localeCompare(aV);
+      });
+      asc = !asc;
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+}
+
+// Initialize
+renderKPIs();
+renderPositions();
+renderTrades();
+renderSnapshots();
+renderNavChart();
+renderAllocChart();
+setupTableSorting('positions-table');
+setupTableSorting('trades-table');
+setupTableSorting('snapshots-table');
+
+document.getElementById('last-updated').innerText = POSITIONS.as_of;
+</script>
+</body>
+</html>
