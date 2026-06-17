@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-06-03T20:00:00Z",
-  "portfolio_value": 100000.00,
+  "as_of": "2026-06-17T14:30:00Z",
+  "portfolio_value": 100301.21,
   "cash_balance": 7467.70,
   "cash_breakdown": {
     "free_cash": 1767.70,
@@ -19,9 +19,9 @@
       "entry_price": 100.00,
       "entry_date": "2026-06-03",
       "cost_basis": 8000.00,
-      "current_price": 100.00,
-      "current_value": 8000.00,
-      "unrealized_pnl": 0,
+      "current_price": 91.79,
+      "current_value": 7343.20,
+      "unrealized_pnl": -656.80,
       "yield_annual_pct": 11.5,
       "layer": "yield_engine",
       "thesis_short": "MSTR preferred, 11.5% fixed yield, low correlation"
@@ -35,9 +35,9 @@
       "entry_price": 20.00,
       "entry_date": "2026-06-03",
       "cost_basis": 5000.00,
-      "current_price": 20.00,
-      "current_value": 5000.00,
-      "unrealized_pnl": 0,
+      "current_price": 16.57,
+      "current_value": 4142.50,
+      "unrealized_pnl": -857.50,
       "yield_annual_pct": 10.0,
       "layer": "yield_engine",
       "thesis_short": "PIMCO Dynamic Income CEF, ~10% discount + 10% yield"
@@ -55,13 +55,14 @@
       "entry_date": "2026-06-03",
       "cost_basis": -285.00,
       "collateral_locked": 5700.00,
-      "current_price": 0.95,
-      "current_value": -285.00,
-      "unrealized_pnl": 0,
+      "current_price": 0.30,
+      "current_value": -90.00,
+      "unrealized_pnl": 195.00,
       "max_profit": 285.00,
       "annualized_yield_pct": 24.0,
       "layer": "yield_engine",
-      "thesis_short": "Get paid 24% annualized to maybe own GME @ effective $18.05"
+      "thesis_short": "Get paid 24% annualized to maybe own GME @ effective $18.05",
+      "estimate_note": "Estimated mid from delta + DTE decay (no live chain)"
     },
     {
       "id": "TBILL-001",
@@ -72,7 +73,9 @@
       "entry_price": 1.00,
       "entry_date": "2026-06-03",
       "cost_basis": 20000.00,
-      "current_value": 20000.00,
+      "current_price": 1.00161,
+      "current_value": 20032.20,
+      "unrealized_pnl": 32.20,
       "yield_annual_pct": 4.2,
       "layer": "yield_engine",
       "thesis_short": "3-month T-bill ladder, 4.2% risk-free, dry powder ready"
@@ -86,9 +89,9 @@
       "entry_price": 17.97,
       "entry_date": "2026-06-03",
       "cost_basis": 7008.30,
-      "current_price": 17.97,
-      "current_value": 7008.30,
-      "unrealized_pnl": 0,
+      "current_price": 16.21,
+      "current_value": 6321.90,
+      "unrealized_pnl": -686.40,
       "layer": "asymmetric_long",
       "thesis_short": "ETH treasury at 12% discount to NAV + 2.73% staking yield + Tom Lee narrative"
     },
@@ -101,9 +104,9 @@
       "entry_price": 17.74,
       "entry_date": "2026-06-03",
       "cost_basis": 7983.00,
-      "current_price": 17.74,
-      "current_value": 7983.00,
-      "unrealized_pnl": 0,
+      "current_price": 17.71,
+      "current_value": 7969.50,
+      "unrealized_pnl": -13.50,
       "layer": "asymmetric_long",
       "thesis_short": "PEG 0.58, +41% revenue, post -40% correction, 14.7M members"
     },
@@ -116,9 +119,9 @@
       "entry_price": 20.85,
       "entry_date": "2026-06-03",
       "cost_basis": 5004.00,
-      "current_price": 20.85,
-      "current_value": 5004.00,
-      "unrealized_pnl": 0,
+      "current_price": 21.46,
+      "current_value": 5150.40,
+      "unrealized_pnl": 146.40,
       "layer": "asymmetric_long",
       "thesis_short": "SOTP ~$35 vs $20.92 stock = 41% discount + $2B buyback + BTC optionality"
     },
@@ -131,9 +134,9 @@
       "entry_price": 513.00,
       "entry_date": "2026-06-03",
       "cost_basis": 5130.00,
-      "current_price": 513.00,
-      "current_value": 5130.00,
-      "unrealized_pnl": 0,
+      "current_price": 535.95,
+      "current_value": 5359.50,
+      "unrealized_pnl": 229.50,
       "layer": "long_equity",
       "thesis_short": "Defense contrarian, P/E 16, RSI 37 oversold, Iran catalyst, beta 0.11"
     },
@@ -146,9 +149,9 @@
       "entry_price": 149.00,
       "entry_date": "2026-06-03",
       "cost_basis": 4917.00,
-      "current_price": 149.00,
-      "current_value": 4917.00,
-      "unrealized_pnl": 0,
+      "current_price": 141.86,
+      "current_value": 4681.38,
+      "unrealized_pnl": -235.62,
       "layer": "long_equity",
       "thesis_short": "Energy defensive, beta 0.15, Iran hedge, debt/eq 0.19, 2.78% div"
     },
@@ -161,9 +164,9 @@
       "entry_price": 53.00,
       "entry_date": "2026-06-03",
       "cost_basis": 3975.00,
-      "current_price": 53.00,
-      "current_value": 3975.00,
-      "unrealized_pnl": 0,
+      "current_price": 47.87,
+      "current_value": 3590.25,
+      "unrealized_pnl": -384.75,
       "layer": "long_equity",
       "thesis_short": "Uranium structural - AI data centers + decarbonization + SMR rollout"
     },
@@ -179,12 +182,13 @@
       "entry_price": 55.00,
       "entry_date": "2026-06-03",
       "cost_basis": 5500.00,
-      "current_price": 55.00,
-      "current_value": 5500.00,
-      "unrealized_pnl": 0,
-      "delta": 0.78,
+      "current_price": 73.00,
+      "current_value": 7300.00,
+      "unrealized_pnl": 1800.00,
+      "delta": 0.82,
       "layer": "asymmetric_long",
-      "thesis_short": "LMT LEAPS Jan'27 $500C - 5x leverage on defense contrarian thesis"
+      "thesis_short": "LMT LEAPS Jan'27 $500C - 5x leverage on defense contrarian thesis",
+      "estimate_note": "Estimated mid via delta on LMT +$22.95 move (no live chain)"
     },
     {
       "id": "GEV-SPREAD-001",
@@ -196,15 +200,17 @@
       "short_strike": 1100.00,
       "expiry": "2026-09-18",
       "quantity": 2,
-      "entry_price": 25.00,
+      "entry_price": 25.90,
       "entry_date": "2026-06-03",
       "cost_basis": 5000.00,
-      "current_value": 5000.00,
+      "current_value": 5180.00,
+      "unrealized_pnl": 180.00,
       "max_profit": 15000.00,
       "max_loss": 5000.00,
       "rr_ratio": 3.0,
       "layer": "asymmetric_long",
-      "thesis_short": "GEV Sep'26 $1000/$1100 spread - 3:1 R/R AI power picks-and-shovels"
+      "thesis_short": "GEV Sep'26 $1000/$1100 spread - 3:1 R/R AI power picks-and-shovels",
+      "estimate_note": "Estimated - GEV moved +1.4% closer to strikes, slight gain"
     },
     {
       "id": "SOFI-LEAPS-001",
@@ -218,10 +224,13 @@
       "entry_price": 5.00,
       "entry_date": "2026-06-03",
       "cost_basis": 2000.00,
-      "current_value": 2000.00,
+      "current_price": 4.80,
+      "current_value": 1920.00,
+      "unrealized_pnl": -80.00,
       "delta": 0.55,
       "layer": "asymmetric_long",
-      "thesis_short": "SOFI Jan'27 $20C - convexity to PEG 0.58 growth re-rating thesis"
+      "thesis_short": "SOFI Jan'27 $20C - convexity to PEG 0.58 growth re-rating thesis",
+      "estimate_note": "Estimated - SOFI flat, minor theta decay"
     },
     {
       "id": "BMNR-CALLS-001",
@@ -232,13 +241,15 @@
       "strike": 20.00,
       "expiry": "2026-09-18",
       "quantity": 2,
-      "entry_price": 6.00,
+      "entry_price": 4.82,
       "entry_date": "2026-06-03",
       "cost_basis": 1200.00,
-      "current_value": 1200.00,
-      "delta": 0.50,
+      "current_value": 964.00,
+      "unrealized_pnl": -236.00,
+      "delta": 0.42,
       "layer": "asymmetric_long",
-      "thesis_short": "BMNR Sep'26 $20C - convexity to ETH bounce + NAV closure"
+      "thesis_short": "BMNR Sep'26 $20C - convexity to ETH bounce + NAV closure",
+      "estimate_note": "Estimated - BMNR -9.8% hurts delta + theta drag"
     },
     {
       "id": "SPX-HEDGE-001",
@@ -249,13 +260,15 @@
       "strike": 7000.00,
       "expiry": "2026-09-19",
       "quantity": 1,
-      "entry_price": 5.00,
+      "entry_price": 13.50,
       "entry_date": "2026-06-03",
       "cost_basis": 500.00,
-      "current_value": 500.00,
-      "delta": -0.10,
+      "current_value": 1350.00,
+      "unrealized_pnl": 850.00,
+      "delta": -0.12,
       "layer": "hedge",
-      "thesis_short": "SPX 5% OTM tail hedge - section 1256 tax efficient"
+      "thesis_short": "SPX 5% OTM tail hedge - section 1256 tax efficient",
+      "estimate_note": "Estimated - SPX -1.4% moves put closer to strike, IV slightly higher"
     },
     {
       "id": "TBILL-002",
@@ -266,37 +279,32 @@
       "entry_price": 1.00,
       "entry_date": "2026-06-03",
       "cost_basis": 11600.00,
-      "current_value": 11600.00,
+      "current_price": 1.00161,
+      "current_value": 11618.68,
+      "unrealized_pnl": 18.68,
       "yield_annual_pct": 4.2,
       "layer": "dry_powder",
       "thesis_short": "Reserve dry powder for VIX > 25 trigger deployment"
     }
   ],
   "allocation_summary": {
-    "yield_engine_pct": 40.20,
-    "asymmetric_long_pct": 28.71,
-    "long_equity_pct": 14.02,
-    "hedge_pct": 0.50,
-    "dry_powder_pct": 11.60,
-    "cash_pct": 1.50,
-    "options_premium_at_risk_pct": 14.20
+    "yield_engine_pct": 31.34,
+    "asymmetric_long_pct": 34.70,
+    "long_equity_pct": 13.59,
+    "hedge_pct": 1.35,
+    "dry_powder_pct": 11.58,
+    "cash_pct": 7.45
   },
   "exposures": {
     "by_sector": {
-      "tech_fintech": 8.00,
-      "energy": 4.92,
-      "defense": 5.13,
-      "consumer_disc_gaming": 5.00,
-      "materials_uranium": 3.98,
-      "crypto_proxy": 8.21,
-      "industrials_ai_power": 5.00,
-      "fixed_income": 53.00
-    },
-    "by_beta": {
-      "low_beta_under_0_5": 30.45,
-      "mid_beta_0_5_to_1_5": 13.13,
-      "high_beta_over_1_5": 23.30,
-      "non_directional": 33.12
+      "tech_fintech": 9.86,
+      "energy": 4.67,
+      "defense": 12.62,
+      "consumer_disc_gaming": 5.05,
+      "materials_uranium": 3.58,
+      "crypto_proxy": 7.27,
+      "industrials_ai_power": 5.16,
+      "fixed_income": 51.42
     }
   }
 }

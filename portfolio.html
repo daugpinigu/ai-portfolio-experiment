@@ -296,7 +296,7 @@
 // EMBEDDED DATA - sync with positions.json, trades.json, daily-values.json
 // ============================================================================
 const POSITIONS = {
-  "as_of": "2026-06-03T20:00:00Z",
+  "as_of": "2026-06-17T14:30:00Z",
   "starting_capital": 100000.00,
   "cash_balance": 7467.70,
   "cash_breakdown": {
@@ -304,30 +304,30 @@ const POSITIONS = {
     "csp_collateral": 5700.00
   },
   "positions": [
-    {ticker:"STRC", asset_class:"preferred", layer:"yield_engine", quantity:80, entry_price:100.00, current_price:100.00, cost_basis:8000, current_value:8000, detail:"11.5% pref"},
-    {ticker:"PDI", asset_class:"cef", layer:"yield_engine", quantity:250, entry_price:20.00, current_price:20.00, cost_basis:5000, current_value:5000, detail:"~10% yield CEF"},
-    {ticker:"GME", asset_class:"option", layer:"yield_engine", quantity:-3, entry_price:0.95, current_price:0.95, cost_basis:-285, current_value:-285, detail:"Short put $19 Jul'26", collateral:5700},
-    {ticker:"TBILL-3M", asset_class:"treasury", layer:"yield_engine", quantity:20000, entry_price:1.00, current_price:1.00, cost_basis:20000, current_value:20000, detail:"3M ladder @ 4.2%"},
-    {ticker:"BMNR", asset_class:"stock", layer:"asymmetric_long", quantity:390, entry_price:17.97, current_price:17.97, cost_basis:7008.30, current_value:7008.30, detail:"ETH treasury 12% disc"},
-    {ticker:"SOFI", asset_class:"stock", layer:"asymmetric_long", quantity:450, entry_price:17.74, current_price:17.74, cost_basis:7983, current_value:7983, detail:"PEG 0.58 growth"},
-    {ticker:"GME", asset_class:"stock", layer:"asymmetric_long", quantity:240, entry_price:20.85, current_price:20.85, cost_basis:5004, current_value:5004, detail:"SOTP 41% disc"},
-    {ticker:"LMT", asset_class:"stock", layer:"long_equity", quantity:10, entry_price:513.00, current_price:513.00, cost_basis:5130, current_value:5130, detail:"Defense contrarian"},
-    {ticker:"XOM", asset_class:"stock", layer:"long_equity", quantity:33, entry_price:149.00, current_price:149.00, cost_basis:4917, current_value:4917, detail:"Iran hedge"},
-    {ticker:"URA", asset_class:"etf", layer:"long_equity", quantity:75, entry_price:53.00, current_price:53.00, cost_basis:3975, current_value:3975, detail:"Uranium structural"},
-    {ticker:"LMT", asset_class:"option", layer:"asymmetric_long", quantity:1, entry_price:55.00, current_price:55.00, cost_basis:5500, current_value:5500, detail:"LEAPS $500C Jan'27"},
-    {ticker:"GEV", asset_class:"option_spread", layer:"asymmetric_long", quantity:2, entry_price:25.00, current_price:25.00, cost_basis:5000, current_value:5000, detail:"$1000/$1100 Sep'26 3:1 R/R"},
-    {ticker:"SOFI", asset_class:"option", layer:"asymmetric_long", quantity:4, entry_price:5.00, current_price:5.00, cost_basis:2000, current_value:2000, detail:"$20C Jan'27"},
-    {ticker:"BMNR", asset_class:"option", layer:"asymmetric_long", quantity:2, entry_price:6.00, current_price:6.00, cost_basis:1200, current_value:1200, detail:"$20C Sep'26"},
-    {ticker:"SPX", asset_class:"option", layer:"hedge", quantity:1, entry_price:5.00, current_price:5.00, cost_basis:500, current_value:500, detail:"$7000P Sep'26 tail"},
-    {ticker:"TBILL-DRY", asset_class:"treasury", layer:"dry_powder", quantity:11600, entry_price:1.00, current_price:1.00, cost_basis:11600, current_value:11600, detail:"Trigger reserve"}
+    {ticker:"STRC", asset_class:"preferred", layer:"yield_engine", quantity:80, entry_price:100.00, current_price:91.79, cost_basis:8000, current_value:7343.20, detail:"11.5% pref"},
+    {ticker:"PDI", asset_class:"cef", layer:"yield_engine", quantity:250, entry_price:20.00, current_price:16.57, cost_basis:5000, current_value:4142.50, detail:"~10% yield CEF"},
+    {ticker:"GME", asset_class:"option", layer:"yield_engine", quantity:-3, entry_price:0.95, current_price:0.30, cost_basis:-285, current_value:-90, detail:"Short put $19 Jul'26", collateral:5700},
+    {ticker:"TBILL-3M", asset_class:"treasury", layer:"yield_engine", quantity:20000, entry_price:1.00, current_price:1.00161, cost_basis:20000, current_value:20032.20, detail:"3M ladder @ 4.2%"},
+    {ticker:"BMNR", asset_class:"stock", layer:"asymmetric_long", quantity:390, entry_price:17.97, current_price:16.21, cost_basis:7008.30, current_value:6321.90, detail:"ETH treasury 12% disc"},
+    {ticker:"SOFI", asset_class:"stock", layer:"asymmetric_long", quantity:450, entry_price:17.74, current_price:17.71, cost_basis:7983, current_value:7969.50, detail:"PEG 0.58 growth"},
+    {ticker:"GME", asset_class:"stock", layer:"asymmetric_long", quantity:240, entry_price:20.85, current_price:21.46, cost_basis:5004, current_value:5150.40, detail:"SOTP 41% disc"},
+    {ticker:"LMT", asset_class:"stock", layer:"long_equity", quantity:10, entry_price:513.00, current_price:535.95, cost_basis:5130, current_value:5359.50, detail:"Defense contrarian"},
+    {ticker:"XOM", asset_class:"stock", layer:"long_equity", quantity:33, entry_price:149.00, current_price:141.86, cost_basis:4917, current_value:4681.38, detail:"Iran hedge"},
+    {ticker:"URA", asset_class:"etf", layer:"long_equity", quantity:75, entry_price:53.00, current_price:47.87, cost_basis:3975, current_value:3590.25, detail:"Uranium structural"},
+    {ticker:"LMT", asset_class:"option", layer:"asymmetric_long", quantity:1, entry_price:55.00, current_price:73.00, cost_basis:5500, current_value:7300, detail:"LEAPS $500C Jan'27"},
+    {ticker:"GEV", asset_class:"option_spread", layer:"asymmetric_long", quantity:2, entry_price:25.00, current_price:25.90, cost_basis:5000, current_value:5180, detail:"$1000/$1100 Sep'26 3:1 R/R"},
+    {ticker:"SOFI", asset_class:"option", layer:"asymmetric_long", quantity:4, entry_price:5.00, current_price:4.80, cost_basis:2000, current_value:1920, detail:"$20C Jan'27"},
+    {ticker:"BMNR", asset_class:"option", layer:"asymmetric_long", quantity:2, entry_price:6.00, current_price:4.82, cost_basis:1200, current_value:964, detail:"$20C Sep'26"},
+    {ticker:"SPX", asset_class:"option", layer:"hedge", quantity:1, entry_price:5.00, current_price:13.50, cost_basis:500, current_value:1350, detail:"$7000P Sep'26 tail"},
+    {ticker:"TBILL-DRY", asset_class:"treasury", layer:"dry_powder", quantity:11600, entry_price:1.00, current_price:1.00161, cost_basis:11600, current_value:11618.68, detail:"Trigger reserve"}
   ],
   "allocation": {
-    "Yield engine": 40.20,
-    "Asymmetric long": 28.71,
-    "Long equity": 14.02,
-    "Hedge": 0.50,
-    "Dry powder": 11.60,
-    "Cash buffer": 1.50
+    "Yield engine": 31.34,
+    "Asymmetric long": 34.70,
+    "Long equity": 13.59,
+    "Hedge": 1.35,
+    "Dry powder": 11.58,
+    "Cash buffer": 7.45
   }
 };
 
@@ -351,7 +351,8 @@ const TRADES = [
 ];
 
 const SNAPSHOTS = [
-  {date:"2026-06-03", nav:100000, return_dollar:0, return_pct:0, drawdown:0, cash_pct:32.6, vix:16.05, notes:"Initial deploy. Awaiting next-day market data."}
+  {date:"2026-06-03", nav:100000, return_dollar:0, return_pct:0, drawdown:0, cash_pct:32.6, vix:16.05, notes:"Initial deploy. Awaiting next-day market data."},
+  {date:"2026-06-17", nav:100301.21, return_dollar:301.21, return_pct:0.30, drawdown:0, cash_pct:39.0, vix:16.42, notes:"First refresh post auto-disabled fix (14-day gap). Winners: LMT LEAPS +$1800, SPX put +$850. Losers: PDI -$857, BMNR -$686, STRC -$657. Options MTM are delta estimates."}
 ];
 
 // Benchmark placeholders - will be populated as data comes in
